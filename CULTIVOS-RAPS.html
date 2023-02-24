@@ -1,0 +1,90 @@
+<html lang="es">
+  <head>
+  <title>Raps</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="autor"/>
+    <meta name="description" content="descripción página">
+    <meta name="robots" content="index,follow">
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js"></script>
+    
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+  <style>
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  #map {
+    height: 100%;
+    width: 100%;
+  }
+  </style>
+  <script src='js/predios.js'></script>
+  <script>
+var map;
+  function init() {
+            mapboxgl.accessToken =
+             'pk.eyJ1IjoiZWRpc29uYXJhIiwiYSI6ImNsY3Q3aXZueTB4YWwzb29mcGxtaTQ2OGwifQ.2ipUGSDRgpinf5pBmai0og';
+            map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/satellite-streets-v10',
+                center: [-72.325, -38.6261],
+                zoom: 9,
+                projection: 'globe',
+                attributionControl: false
+            });
+        map.addControl(new mapboxgl.AttributionControl({compact: true}));
+        map.addControl(new mapboxgl.NavigationControl());
+        map.on('load',function(){
+            map.setFog({}); 
+            addCultivo_raps();
+          
+        });
+
+        map.addControl(
+                    new MapboxGeocoder({
+                    accessToken: mapboxgl.accessToken,
+                    mapboxgl: mapboxgl,
+                    collapsed:true
+
+                    })
+                 );
+
+        }
+  </script>
+
+  
+
+  </head>
+  <body onLoad="init()">
+    <div class="panelTopIzquierda">
+    <label id="altura">Comunas</label>
+  
+    
+    <script type="text/javascript" >
+      function update() { 
+      var select = document.getElementById('comunas');
+      var value = select.options[select.selectedIndex].value;
+      console.log(value); // en
+      }
+      update();
+    </script>
+
+    <select id="comunas" onchange="filterCultivo_raps(this.value)">
+     <!-- COMUNAS: {["lautaro":0,"mexico":1, ]}-->
+      <option value="Vilcun" selected>Vilcun</option>
+      <option value="Lautaro" selected>Lautaro</option>
+      <option value="Perquenco" selected>Perquenco</option>
+    </select>
+    
+    </div>
+
+
+  <div id="map"></div>
+  </body>
+  </html>
+
+
