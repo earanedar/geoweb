@@ -51,11 +51,12 @@ async function filterCultivo_raps(value) {
     
     map.addLayer({
       id: 'cultivo_filtrado',
-      type: 'fill',
+      type: 'line',
       source: 'filtrocomuna',
       layout: {},
       paint: {
-        'fill-color': '#ff0000',
+        'line-color': '#ff0000',
+            'line-width': 2
       },
     });
     
