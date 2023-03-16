@@ -22,6 +22,7 @@
     width: 100%;
   }
   </style>
+  <link href="css/estilobase.css" rel="stylesheet" />
   <script src='js/predios.js'></script>
   <script>
 var map;
@@ -60,29 +61,42 @@ var map;
 
   </head>
   <body onLoad="init()">
-    <div class="panelTopIzquierda">
+    <div class="comuna-filtro">
     <label id="altura">Comunas</label>
-  
-    
+      
     <script type="text/javascript" >
       function update() { 
       var select = document.getElementById('comunas');
       var value = select.options[select.selectedIndex].value;
-      console.log(value); // en
+      console.log(value);
       }
       update();
-    </script>
 
-    <select id="comunas" onchange="filterCultivo_raps(this.value)">
-     <!-- COMUNAS: {["lautaro":0,"mexico":1, ]}-->
-      <option value="Vilcun" selected>Vilcun</option>
-      <option value="Lautaro" selected>Lautaro</option>
-      <option value="Perquenco" selected>Perquenco</option>
-    </select>
+      
+           </script>
+
+<select id="comunas" onchange="filterCultivo_raps(this.value)">
+  <option value="Vilcun" selected>Vilcun</option>
+  <option value="Lautaro">Lautaro</option>
+  <option value="Perquenco">Perquenco</option>
+</select>
     
     </div>
-
-
+    <div class="panelTitulo">
+      Cultivos Raps
+    </div>
+    <div class="tabla-comunas">
+      <table>
+        <thead>
+          <tr>
+            <th>Comuna</th>
+            <th>Cantidad de Registros</th>
+          </tr>
+        </thead>
+        <tbody id="tabla-cultivos">
+        </tbody>
+      </table>
+    </div>
   <div id="map"></div>
   </body>
   </html>
